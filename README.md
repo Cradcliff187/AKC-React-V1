@@ -126,6 +126,24 @@ Check constraints ensure data consistency:
 Database setup and modification scripts are available in the `migrations/` directory:
 - `001_add_foreign_keys.sql`: Basic foreign key relationships
 - `002_robust_foreign_keys_and_indexes.sql`: Improved version with error handling
+- `003_fix_enum_constraints.sql`: Adds proper enum type handling
+- `005_fix_rls_column_names.sql`: Updates column references in RLS policies
+- `006_simplified_rls.sql`: Simplified Row Level Security policies
+- `007_minimal_rls.sql`: Minimal RLS setup for all tables
+- `008_add_admin_role.sql`: Adds admin role functionality
+- `009_complete_database_setup.sql`: Comprehensive verification and setup script
+
+### Row Level Security (RLS)
+The application implements Row Level Security in Supabase to ensure data protection:
+
+- All tables have RLS enabled by default
+- Authentication is required to access any data
+- Two key security functions are implemented:
+  - `is_authenticated()`: Verifies the user is logged in
+  - `is_admin()`: Checks if the user has admin privileges
+- Document access is controlled by the creator's ID
+- Users can only see and modify their own data unless they have admin rights
+- Utility scripts for verifying security setup are included in the `scripts/` directory
 
 ## Contributing
 
