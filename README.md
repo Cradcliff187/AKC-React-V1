@@ -91,17 +91,41 @@ src/
 - `npm start` - Start production server
 - `npm run lint` - Run ESLint
 
-### Database Structure
+## Database Structure
 
-The application uses Supabase with the following main tables:
-- `tasks` - Task management
-- `projects` - Project information
-- `clients` - Client data
-- `invoices` - Invoice tracking
-- `expenses` - Expense tracking
-- `documents` - Document management
+### Tables
+The application uses a PostgreSQL database with the following main tables:
+- `user_profiles`: Stores user information
+- `tasks`: Tracks individual tasks with status, priority, and assignments
+- `projects`: Manages construction projects
+- `clients`: Stores client information
+- `time_entries`: Records time spent on tasks and projects
+- `documents`: Manages files and documents
+- `invoices`: Tracks billing and payments
 
-Each table has appropriate RLS policies to ensure data security.
+### Relationships and Integrity
+The database maintains referential integrity through foreign key relationships:
+- Tasks are associated with projects (cascade delete)
+- Tasks can be assigned to users (set null on delete)
+- Projects are linked to clients (restrict delete)
+- Time entries are linked to both projects and tasks
+
+### Performance Optimization
+The database is optimized for performance with strategic indexes:
+- Single-column indexes on frequently queried fields like `project_id`, `assigned_to_id`, etc.
+- Composite indexes for common query patterns (e.g., `project_id` + `status`)
+- Primary keys on all tables for efficient lookups
+
+### Data Validation
+Check constraints ensure data consistency:
+- Task status must be one of: 'pending', 'in_progress', 'completed', 'cancelled'
+- Task priority must be one of: 'low', 'medium', 'high', 'urgent'
+- Project status must be one of: 'planning', 'active', 'on_hold', 'completed', 'cancelled'
+
+### Database Migrations
+Database setup and modification scripts are available in the `migrations/` directory:
+- `001_add_foreign_keys.sql`: Basic foreign key relationships
+- `002_robust_foreign_keys_and_indexes.sql`: Improved version with error handling
 
 ## Contributing
 
