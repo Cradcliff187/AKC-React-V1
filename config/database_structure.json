@@ -1,0 +1,98 @@
+{
+  "tables": [
+    {
+      "name": "customers",
+      "total_rows": 0,
+      "columns": [],
+      "sample_data": [],
+      "has_data": false
+    },
+    {
+      "name": "payments",
+      "total_rows": 2,
+      "columns": [
+        {
+          "name": "id",
+          "type": "string",
+          "sample": "f1d5f687-dfd5-46cc-9d83-f734daab3c33",
+          "nullable": false
+        },
+        {
+          "name": "invoice_id",
+          "type": "string",
+          "sample": "cb0c6d89-3de0-44ba-91e1-d5539d891729",
+          "nullable": false
+        },
+        {
+          "name": "amount",
+          "type": "number",
+          "sample": 54000,
+          "nullable": false
+        },
+        {
+          "name": "payment_date",
+          "type": "string",
+          "sample": "2025-03-13T23:57:37.925439+00:00",
+          "nullable": false
+        },
+        {
+          "name": "payment_method",
+          "type": "string",
+          "sample": "check",
+          "nullable": false
+        },
+        {
+          "name": "reference_number",
+          "type": "object",
+          "sample": null,
+          "nullable": true
+        },
+        {
+          "name": "notes",
+          "type": "object",
+          "sample": null,
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "string",
+          "sample": "2025-03-13T23:57:37.925439+00:00",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "string",
+          "sample": "2025-03-13T23:57:37.925439+00:00",
+          "nullable": false
+        }
+      ],
+      "sample_data": [
+        {
+          "id": "f1d5f687-dfd5-46cc-9d83-f734daab3c33",
+          "invoice_id": "cb0c6d89-3de0-44ba-91e1-d5539d891729",
+          "amount": 54000,
+          "payment_date": "2025-03-13T23:57:37.925439+00:00",
+          "payment_method": "check",
+          "reference_number": null,
+          "notes": null,
+          "created_at": "2025-03-13T23:57:37.925439+00:00",
+          "updated_at": "2025-03-13T23:57:37.925439+00:00"
+        },
+        {
+          "id": "eb2532a8-bd20-4336-8b22-5a5a0b6f1009",
+          "invoice_id": "78a9606a-798a-448d-89d5-c234a8cf2b25",
+          "amount": 54000,
+          "payment_date": "2025-03-13T23:58:56.897795+00:00",
+          "payment_method": "check",
+          "reference_number": null,
+          "notes": null,
+          "created_at": "2025-03-13T23:58:56.897795+00:00",
+          "updated_at": "2025-03-13T23:58:56.897795+00:00"
+        }
+      ],
+      "has_data": true
+    }
+  ],
+  "timestamp": "2025-03-15T21:41:55.445Z",
+  "supabase_url": "https://olfbvahswnkpxlnhbwds.supabase.co"
+}

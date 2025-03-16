@@ -1,0 +1,792 @@
+{
+  "tables": [
+    {
+      "table_name": "temp_config_export",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "user_profiles",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "projects",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "expenses",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "invoices",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "invoice_items",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "payments",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "user_notifications",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "project_tasks",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "customers",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "vendors",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "timelogs",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "materialsreceipts",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "subinvoices",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "subcontractors",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "estimates",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "activitylog",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "tasks",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "clients",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "documents",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "document_access",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "bids",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "bid_items",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "notifications",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "time_entries",
+      "table_type": "BASE TABLE"
+    },
+    {
+      "table_name": "test_table",
+      "table_type": "BASE TABLE"
+    }
+  ],
+  "policies": [
+    {
+      "tablename": "user_profiles",
+      "policyname": "user_profiles_delete",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "public"
+      ],
+      "cmd": "DELETE",
+      "qual": "((auth_id = (auth.uid())::text) OR (auth.role() = 'service_role'::text))",
+      "with_check": null
+    },
+    {
+      "tablename": "user_profiles",
+      "policyname": "user_profiles_insert",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "public"
+      ],
+      "cmd": "INSERT",
+      "qual": null,
+      "with_check": "((auth_id = (auth.uid())::text) OR (auth.role() = 'service_role'::text))"
+    },
+    {
+      "tablename": "user_profiles",
+      "policyname": "user_profiles_select",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "public"
+      ],
+      "cmd": "SELECT",
+      "qual": "((auth_id = (auth.uid())::text) OR (auth.role() = 'service_role'::text))",
+      "with_check": null
+    },
+    {
+      "tablename": "user_profiles",
+      "policyname": "user_profiles_update",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "public"
+      ],
+      "cmd": "UPDATE",
+      "qual": "((auth_id = (auth.uid())::text) OR (auth.role() = 'service_role'::text))",
+      "with_check": null
+    },
+    {
+      "tablename": "user_notifications",
+      "policyname": "user_notifications_delete",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "public"
+      ],
+      "cmd": "DELETE",
+      "qual": "((user_id IN ( SELECT user_profiles.id\n   FROM user_profiles\n  WHERE (user_profiles.auth_id = (auth.uid())::text))) OR (auth.role() = 'service_role'::text))",
+      "with_check": null
+    },
+    {
+      "tablename": "user_notifications",
+      "policyname": "user_notifications_insert",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "public"
+      ],
+      "cmd": "INSERT",
+      "qual": null,
+      "with_check": "(auth.role() = 'authenticated'::text)"
+    },
+    {
+      "tablename": "user_notifications",
+      "policyname": "user_notifications_select",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "public"
+      ],
+      "cmd": "SELECT",
+      "qual": "(user_id IN ( SELECT user_profiles.id\n   FROM user_profiles\n  WHERE (user_profiles.auth_id = (auth.uid())::text)))",
+      "with_check": null
+    },
+    {
+      "tablename": "user_notifications",
+      "policyname": "user_notifications_update",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "public"
+      ],
+      "cmd": "UPDATE",
+      "qual": "((user_id IN ( SELECT user_profiles.id\n   FROM user_profiles\n  WHERE (user_profiles.auth_id = (auth.uid())::text))) OR (auth.role() = 'service_role'::text))",
+      "with_check": null
+    },
+    {
+      "tablename": "test_table",
+      "policyname": "Allow all operations for testing",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "public"
+      ],
+      "cmd": "ALL",
+      "qual": "true",
+      "with_check": "true"
+    }
+  ],
+  "indexes": [
+    {
+      "tablename": "temp_config_export",
+      "indexname": "temp_config_export_pkey",
+      "indexdef": "CREATE UNIQUE INDEX temp_config_export_pkey ON public.temp_config_export USING btree (id)"
+    },
+    {
+      "tablename": "temp_config_export",
+      "indexname": "idx_temp_config_export_expires_at",
+      "indexdef": "CREATE INDEX idx_temp_config_export_expires_at ON public.temp_config_export USING btree (expires_at)"
+    },
+    {
+      "tablename": "user_profiles",
+      "indexname": "user_profiles_pkey",
+      "indexdef": "CREATE UNIQUE INDEX user_profiles_pkey ON public.user_profiles USING btree (id)"
+    },
+    {
+      "tablename": "user_profiles",
+      "indexname": "user_profiles_auth_id_key",
+      "indexdef": "CREATE UNIQUE INDEX user_profiles_auth_id_key ON public.user_profiles USING btree (auth_id)"
+    },
+    {
+      "tablename": "user_profiles",
+      "indexname": "user_profiles_email_key",
+      "indexdef": "CREATE UNIQUE INDEX user_profiles_email_key ON public.user_profiles USING btree (email)"
+    },
+    {
+      "tablename": "user_profiles",
+      "indexname": "idx_user_profiles_auth_id",
+      "indexdef": "CREATE INDEX idx_user_profiles_auth_id ON public.user_profiles USING btree (auth_id)"
+    },
+    {
+      "tablename": "user_profiles",
+      "indexname": "idx_user_profiles_email",
+      "indexdef": "CREATE INDEX idx_user_profiles_email ON public.user_profiles USING btree (email)"
+    },
+    {
+      "tablename": "user_profiles",
+      "indexname": "idx_user_profiles_role",
+      "indexdef": "CREATE INDEX idx_user_profiles_role ON public.user_profiles USING btree (role)"
+    },
+    {
+      "tablename": "user_profiles",
+      "indexname": "idx_user_profiles_status",
+      "indexdef": "CREATE INDEX idx_user_profiles_status ON public.user_profiles USING btree (status)"
+    },
+    {
+      "tablename": "projects",
+      "indexname": "idx_projects_client_id",
+      "indexdef": "CREATE INDEX idx_projects_client_id ON public.projects USING btree (client_id)"
+    },
+    {
+      "tablename": "projects",
+      "indexname": "idx_projects_status",
+      "indexdef": "CREATE INDEX idx_projects_status ON public.projects USING btree (status)"
+    },
+    {
+      "tablename": "projects",
+      "indexname": "projects_pkey",
+      "indexdef": "CREATE UNIQUE INDEX projects_pkey ON public.projects USING btree (id)"
+    },
+    {
+      "tablename": "expenses",
+      "indexname": "idx_expenses_project_id",
+      "indexdef": "CREATE INDEX idx_expenses_project_id ON public.expenses USING btree (project_id)"
+    },
+    {
+      "tablename": "expenses",
+      "indexname": "idx_expenses_date",
+      "indexdef": "CREATE INDEX idx_expenses_date ON public.expenses USING btree (date)"
+    },
+    {
+      "tablename": "expenses",
+      "indexname": "expenses_pkey",
+      "indexdef": "CREATE UNIQUE INDEX expenses_pkey ON public.expenses USING btree (id)"
+    },
+    {
+      "tablename": "invoices",
+      "indexname": "idx_invoices_client_id",
+      "indexdef": "CREATE INDEX idx_invoices_client_id ON public.invoices USING btree (client_id)"
+    },
+    {
+      "tablename": "invoices",
+      "indexname": "idx_invoices_project_id",
+      "indexdef": "CREATE INDEX idx_invoices_project_id ON public.invoices USING btree (project_id)"
+    },
+    {
+      "tablename": "invoices",
+      "indexname": "idx_invoices_status",
+      "indexdef": "CREATE INDEX idx_invoices_status ON public.invoices USING btree (status)"
+    },
+    {
+      "tablename": "invoices",
+      "indexname": "idx_invoices_due_date",
+      "indexdef": "CREATE INDEX idx_invoices_due_date ON public.invoices USING btree (due_date)"
+    },
+    {
+      "tablename": "invoices",
+      "indexname": "invoices_pkey",
+      "indexdef": "CREATE UNIQUE INDEX invoices_pkey ON public.invoices USING btree (id)"
+    },
+    {
+      "tablename": "invoices",
+      "indexname": "invoices_invoice_number_key",
+      "indexdef": "CREATE UNIQUE INDEX invoices_invoice_number_key ON public.invoices USING btree (invoice_number)"
+    },
+    {
+      "tablename": "invoice_items",
+      "indexname": "idx_invoice_items_invoice_id",
+      "indexdef": "CREATE INDEX idx_invoice_items_invoice_id ON public.invoice_items USING btree (invoice_id)"
+    },
+    {
+      "tablename": "invoice_items",
+      "indexname": "invoice_items_pkey",
+      "indexdef": "CREATE UNIQUE INDEX invoice_items_pkey ON public.invoice_items USING btree (id)"
+    },
+    {
+      "tablename": "user_notifications",
+      "indexname": "user_notifications_pkey",
+      "indexdef": "CREATE UNIQUE INDEX user_notifications_pkey ON public.user_notifications USING btree (id)"
+    },
+    {
+      "tablename": "user_notifications",
+      "indexname": "idx_user_notifications_user_id",
+      "indexdef": "CREATE INDEX idx_user_notifications_user_id ON public.user_notifications USING btree (user_id)"
+    },
+    {
+      "tablename": "user_notifications",
+      "indexname": "idx_user_notifications_is_read",
+      "indexdef": "CREATE INDEX idx_user_notifications_is_read ON public.user_notifications USING btree (is_read)"
+    },
+    {
+      "tablename": "project_tasks",
+      "indexname": "project_tasks_pkey",
+      "indexdef": "CREATE UNIQUE INDEX project_tasks_pkey ON public.project_tasks USING btree (id)"
+    },
+    {
+      "tablename": "project_tasks",
+      "indexname": "idx_project_tasks_project_id",
+      "indexdef": "CREATE INDEX idx_project_tasks_project_id ON public.project_tasks USING btree (project_id)"
+    },
+    {
+      "tablename": "project_tasks",
+      "indexname": "idx_project_tasks_assigned_to",
+      "indexdef": "CREATE INDEX idx_project_tasks_assigned_to ON public.project_tasks USING btree (assigned_to)"
+    },
+    {
+      "tablename": "project_tasks",
+      "indexname": "idx_project_tasks_status",
+      "indexdef": "CREATE INDEX idx_project_tasks_status ON public.project_tasks USING btree (status)"
+    },
+    {
+      "tablename": "project_tasks",
+      "indexname": "idx_project_tasks_due_date",
+      "indexdef": "CREATE INDEX idx_project_tasks_due_date ON public.project_tasks USING btree (due_date)"
+    },
+    {
+      "tablename": "payments",
+      "indexname": "payments_pkey",
+      "indexdef": "CREATE UNIQUE INDEX payments_pkey ON public.payments USING btree (id)"
+    },
+    {
+      "tablename": "payments",
+      "indexname": "idx_payments_invoice_id",
+      "indexdef": "CREATE INDEX idx_payments_invoice_id ON public.payments USING btree (invoice_id)"
+    },
+    {
+      "tablename": "payments",
+      "indexname": "idx_payments_payment_date",
+      "indexdef": "CREATE INDEX idx_payments_payment_date ON public.payments USING btree (payment_date)"
+    },
+    {
+      "tablename": "customers",
+      "indexname": "customers_pkey",
+      "indexdef": "CREATE UNIQUE INDEX customers_pkey ON public.customers USING btree (customerid)"
+    },
+    {
+      "tablename": "vendors",
+      "indexname": "vendors_pkey",
+      "indexdef": "CREATE UNIQUE INDEX vendors_pkey ON public.vendors USING btree (vendorid)"
+    },
+    {
+      "tablename": "timelogs",
+      "indexname": "timelogs_pkey",
+      "indexdef": "CREATE UNIQUE INDEX timelogs_pkey ON public.timelogs USING btree (timelogid)"
+    },
+    {
+      "tablename": "materialsreceipts",
+      "indexname": "idx_materialsreceipts_vendorid",
+      "indexdef": "CREATE INDEX idx_materialsreceipts_vendorid ON public.materialsreceipts USING btree (vendorid)"
+    },
+    {
+      "tablename": "materialsreceipts",
+      "indexname": "materialsreceipts_pkey",
+      "indexdef": "CREATE UNIQUE INDEX materialsreceipts_pkey ON public.materialsreceipts USING btree (receiptid)"
+    },
+    {
+      "tablename": "subinvoices",
+      "indexname": "idx_subinvoices_subid",
+      "indexdef": "CREATE INDEX idx_subinvoices_subid ON public.subinvoices USING btree (subid)"
+    },
+    {
+      "tablename": "subinvoices",
+      "indexname": "subinvoices_pkey",
+      "indexdef": "CREATE UNIQUE INDEX subinvoices_pkey ON public.subinvoices USING btree (subinvoiceid)"
+    },
+    {
+      "tablename": "subcontractors",
+      "indexname": "subcontractors_pkey",
+      "indexdef": "CREATE UNIQUE INDEX subcontractors_pkey ON public.subcontractors USING btree (subid)"
+    },
+    {
+      "tablename": "estimates",
+      "indexname": "idx_estimates_customerid",
+      "indexdef": "CREATE INDEX idx_estimates_customerid ON public.estimates USING btree (customerid)"
+    },
+    {
+      "tablename": "estimates",
+      "indexname": "estimates_pkey",
+      "indexdef": "CREATE UNIQUE INDEX estimates_pkey ON public.estimates USING btree (estimateid)"
+    },
+    {
+      "tablename": "activitylog",
+      "indexname": "activitylog_pkey",
+      "indexdef": "CREATE UNIQUE INDEX activitylog_pkey ON public.activitylog USING btree (logid)"
+    },
+    {
+      "tablename": "tasks",
+      "indexname": "idx_tasks_project_id",
+      "indexdef": "CREATE INDEX idx_tasks_project_id ON public.tasks USING btree (project_id)"
+    },
+    {
+      "tablename": "tasks",
+      "indexname": "idx_tasks_status",
+      "indexdef": "CREATE INDEX idx_tasks_status ON public.tasks USING btree (status)"
+    },
+    {
+      "tablename": "tasks",
+      "indexname": "idx_tasks_priority",
+      "indexdef": "CREATE INDEX idx_tasks_priority ON public.tasks USING btree (priority)"
+    },
+    {
+      "tablename": "tasks",
+      "indexname": "idx_tasks_due_date",
+      "indexdef": "CREATE INDEX idx_tasks_due_date ON public.tasks USING btree (due_date)"
+    },
+    {
+      "tablename": "tasks",
+      "indexname": "tasks_pkey",
+      "indexdef": "CREATE UNIQUE INDEX tasks_pkey ON public.tasks USING btree (id)"
+    },
+    {
+      "tablename": "clients",
+      "indexname": "clients_pkey",
+      "indexdef": "CREATE UNIQUE INDEX clients_pkey ON public.clients USING btree (id)"
+    },
+    {
+      "tablename": "documents",
+      "indexname": "idx_documents_client_id",
+      "indexdef": "CREATE INDEX idx_documents_client_id ON public.documents USING btree (client_id)"
+    },
+    {
+      "tablename": "documents",
+      "indexname": "idx_documents_project_id",
+      "indexdef": "CREATE INDEX idx_documents_project_id ON public.documents USING btree (project_id)"
+    },
+    {
+      "tablename": "documents",
+      "indexname": "documents_pkey",
+      "indexdef": "CREATE UNIQUE INDEX documents_pkey ON public.documents USING btree (id)"
+    },
+    {
+      "tablename": "document_access",
+      "indexname": "idx_document_access_document_id",
+      "indexdef": "CREATE INDEX idx_document_access_document_id ON public.document_access USING btree (document_id)"
+    },
+    {
+      "tablename": "document_access",
+      "indexname": "document_access_pkey",
+      "indexdef": "CREATE UNIQUE INDEX document_access_pkey ON public.document_access USING btree (id)"
+    },
+    {
+      "tablename": "bids",
+      "indexname": "idx_bids_client_id",
+      "indexdef": "CREATE INDEX idx_bids_client_id ON public.bids USING btree (client_id)"
+    },
+    {
+      "tablename": "bids",
+      "indexname": "idx_bids_project_id",
+      "indexdef": "CREATE INDEX idx_bids_project_id ON public.bids USING btree (project_id)"
+    },
+    {
+      "tablename": "bids",
+      "indexname": "bids_pkey",
+      "indexdef": "CREATE UNIQUE INDEX bids_pkey ON public.bids USING btree (id)"
+    },
+    {
+      "tablename": "bid_items",
+      "indexname": "idx_bid_items_bid_id",
+      "indexdef": "CREATE INDEX idx_bid_items_bid_id ON public.bid_items USING btree (bid_id)"
+    },
+    {
+      "tablename": "bid_items",
+      "indexname": "bid_items_pkey",
+      "indexdef": "CREATE UNIQUE INDEX bid_items_pkey ON public.bid_items USING btree (id)"
+    },
+    {
+      "tablename": "notifications",
+      "indexname": "idx_notifications_read",
+      "indexdef": "CREATE INDEX idx_notifications_read ON public.notifications USING btree (read)"
+    },
+    {
+      "tablename": "notifications",
+      "indexname": "idx_notifications_user_id",
+      "indexdef": "CREATE INDEX idx_notifications_user_id ON public.notifications USING btree (user_id)"
+    },
+    {
+      "tablename": "notifications",
+      "indexname": "notifications_pkey",
+      "indexdef": "CREATE UNIQUE INDEX notifications_pkey ON public.notifications USING btree (id)"
+    },
+    {
+      "tablename": "time_entries",
+      "indexname": "idx_time_entries_project_id",
+      "indexdef": "CREATE INDEX idx_time_entries_project_id ON public.time_entries USING btree (project_id)"
+    },
+    {
+      "tablename": "time_entries",
+      "indexname": "idx_time_entries_task_id",
+      "indexdef": "CREATE INDEX idx_time_entries_task_id ON public.time_entries USING btree (task_id)"
+    },
+    {
+      "tablename": "time_entries",
+      "indexname": "idx_time_entries_date",
+      "indexdef": "CREATE INDEX idx_time_entries_date ON public.time_entries USING btree (date)"
+    },
+    {
+      "tablename": "time_entries",
+      "indexname": "time_entries_pkey",
+      "indexdef": "CREATE UNIQUE INDEX time_entries_pkey ON public.time_entries USING btree (id)"
+    },
+    {
+      "tablename": "test_table",
+      "indexname": "test_table_pkey",
+      "indexdef": "CREATE UNIQUE INDEX test_table_pkey ON public.test_table USING btree (id)"
+    }
+  ],
+  "security": [
+    {
+      "table_name": "temp_config_export",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": false,
+      "rls_forced": false
+    },
+    {
+      "table_name": "user_profiles",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "projects",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "expenses",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "invoices",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "invoice_items",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "payments",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "user_notifications",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "project_tasks",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "customers",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "vendors",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "timelogs",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "materialsreceipts",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "subinvoices",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "subcontractors",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "estimates",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "activitylog",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "tasks",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "clients",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "documents",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "document_access",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "bids",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "bid_items",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "notifications",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "time_entries",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "table_name": "test_table",
+      "public_select": false,
+      "public_insert": false,
+      "public_update": false,
+      "public_delete": false,
+      "rls_enabled": true,
+      "rls_forced": false
+    }
+  ]
+}

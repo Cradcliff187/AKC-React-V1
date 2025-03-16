@@ -1,0 +1,487 @@
+{
+  "indexes": [
+    {
+      "table_name": "activitylog",
+      "index_name": "activitylog_pkey",
+      "index_size": "8192 bytes",
+      "is_unique": true,
+      "column_names": "logid"
+    },
+    {
+      "table_name": "bid_items",
+      "index_name": "bid_items_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "bid_items",
+      "index_name": "idx_bid_items_bid_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "bid_id"
+    },
+    {
+      "table_name": "bids",
+      "index_name": "bids_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "bids",
+      "index_name": "idx_bids_client_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "client_id"
+    },
+    {
+      "table_name": "bids",
+      "index_name": "idx_bids_project_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "project_id"
+    },
+    {
+      "table_name": "clients",
+      "index_name": "clients_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "customers",
+      "index_name": "customers_pkey",
+      "index_size": "8192 bytes",
+      "is_unique": true,
+      "column_names": "customerid"
+    },
+    {
+      "table_name": "document_access",
+      "index_name": "document_access_pkey",
+      "index_size": "8192 bytes",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "document_access",
+      "index_name": "idx_document_access_document_id",
+      "index_size": "8192 bytes",
+      "is_unique": false,
+      "column_names": "document_id"
+    },
+    {
+      "table_name": "documents",
+      "index_name": "documents_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "documents",
+      "index_name": "idx_documents_client_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "client_id"
+    },
+    {
+      "table_name": "documents",
+      "index_name": "idx_documents_project_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "project_id"
+    },
+    {
+      "table_name": "estimates",
+      "index_name": "estimates_pkey",
+      "index_size": "8192 bytes",
+      "is_unique": true,
+      "column_names": "estimateid"
+    },
+    {
+      "table_name": "estimates",
+      "index_name": "idx_estimates_customerid",
+      "index_size": "8192 bytes",
+      "is_unique": false,
+      "column_names": "customerid"
+    },
+    {
+      "table_name": "expenses",
+      "index_name": "expenses_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "expenses",
+      "index_name": "idx_expenses_date",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "date"
+    },
+    {
+      "table_name": "expenses",
+      "index_name": "idx_expenses_project_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "project_id"
+    },
+    {
+      "table_name": "invoice_items",
+      "index_name": "idx_invoice_items_invoice_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "invoice_id"
+    },
+    {
+      "table_name": "invoice_items",
+      "index_name": "invoice_items_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "invoices",
+      "index_name": "idx_invoices_client_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "client_id"
+    },
+    {
+      "table_name": "invoices",
+      "index_name": "idx_invoices_due_date",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "due_date"
+    },
+    {
+      "table_name": "invoices",
+      "index_name": "idx_invoices_project_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "project_id"
+    },
+    {
+      "table_name": "invoices",
+      "index_name": "idx_invoices_status",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "status"
+    },
+    {
+      "table_name": "invoices",
+      "index_name": "invoices_invoice_number_key",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "invoice_number"
+    },
+    {
+      "table_name": "invoices",
+      "index_name": "invoices_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "materialsreceipts",
+      "index_name": "idx_materialsreceipts_vendorid",
+      "index_size": "8192 bytes",
+      "is_unique": false,
+      "column_names": "vendorid"
+    },
+    {
+      "table_name": "materialsreceipts",
+      "index_name": "materialsreceipts_pkey",
+      "index_size": "8192 bytes",
+      "is_unique": true,
+      "column_names": "receiptid"
+    },
+    {
+      "table_name": "notifications",
+      "index_name": "idx_notifications_read",
+      "index_size": "8192 bytes",
+      "is_unique": false,
+      "column_names": "read"
+    },
+    {
+      "table_name": "notifications",
+      "index_name": "idx_notifications_user_id",
+      "index_size": "8192 bytes",
+      "is_unique": false,
+      "column_names": "user_id"
+    },
+    {
+      "table_name": "notifications",
+      "index_name": "notifications_pkey",
+      "index_size": "8192 bytes",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "payments",
+      "index_name": "idx_payments_invoice_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "invoice_id"
+    },
+    {
+      "table_name": "payments",
+      "index_name": "idx_payments_payment_date",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "payment_date"
+    },
+    {
+      "table_name": "payments",
+      "index_name": "payments_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "project_tasks",
+      "index_name": "idx_project_tasks_assigned_to",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "assigned_to"
+    },
+    {
+      "table_name": "project_tasks",
+      "index_name": "idx_project_tasks_due_date",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "due_date"
+    },
+    {
+      "table_name": "project_tasks",
+      "index_name": "idx_project_tasks_project_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "project_id"
+    },
+    {
+      "table_name": "project_tasks",
+      "index_name": "idx_project_tasks_status",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "status"
+    },
+    {
+      "table_name": "project_tasks",
+      "index_name": "project_tasks_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "projects",
+      "index_name": "idx_projects_client_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "client_id"
+    },
+    {
+      "table_name": "projects",
+      "index_name": "idx_projects_status",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "status"
+    },
+    {
+      "table_name": "projects",
+      "index_name": "projects_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "subcontractors",
+      "index_name": "subcontractors_pkey",
+      "index_size": "8192 bytes",
+      "is_unique": true,
+      "column_names": "subid"
+    },
+    {
+      "table_name": "subinvoices",
+      "index_name": "idx_subinvoices_subid",
+      "index_size": "8192 bytes",
+      "is_unique": false,
+      "column_names": "subid"
+    },
+    {
+      "table_name": "subinvoices",
+      "index_name": "subinvoices_pkey",
+      "index_size": "8192 bytes",
+      "is_unique": true,
+      "column_names": "subinvoiceid"
+    },
+    {
+      "table_name": "tasks",
+      "index_name": "idx_tasks_due_date",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "due_date"
+    },
+    {
+      "table_name": "tasks",
+      "index_name": "idx_tasks_priority",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "priority"
+    },
+    {
+      "table_name": "tasks",
+      "index_name": "idx_tasks_project_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "project_id"
+    },
+    {
+      "table_name": "tasks",
+      "index_name": "idx_tasks_status",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "status"
+    },
+    {
+      "table_name": "tasks",
+      "index_name": "tasks_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "temp_config_export",
+      "index_name": "idx_temp_config_export_expires_at",
+      "index_size": "8192 bytes",
+      "is_unique": false,
+      "column_names": "expires_at"
+    },
+    {
+      "table_name": "temp_config_export",
+      "index_name": "temp_config_export_pkey",
+      "index_size": "8192 bytes",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "test_table",
+      "index_name": "test_table_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "time_entries",
+      "index_name": "idx_time_entries_date",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "date"
+    },
+    {
+      "table_name": "time_entries",
+      "index_name": "idx_time_entries_project_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "project_id"
+    },
+    {
+      "table_name": "time_entries",
+      "index_name": "idx_time_entries_task_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "task_id"
+    },
+    {
+      "table_name": "time_entries",
+      "index_name": "time_entries_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "timelogs",
+      "index_name": "timelogs_pkey",
+      "index_size": "8192 bytes",
+      "is_unique": true,
+      "column_names": "timelogid"
+    },
+    {
+      "table_name": "user_notifications",
+      "index_name": "idx_user_notifications_is_read",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "is_read"
+    },
+    {
+      "table_name": "user_notifications",
+      "index_name": "idx_user_notifications_user_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "user_id"
+    },
+    {
+      "table_name": "user_notifications",
+      "index_name": "user_notifications_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "user_profiles",
+      "index_name": "idx_user_profiles_auth_id",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "auth_id"
+    },
+    {
+      "table_name": "user_profiles",
+      "index_name": "idx_user_profiles_email",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "email"
+    },
+    {
+      "table_name": "user_profiles",
+      "index_name": "idx_user_profiles_role",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "role"
+    },
+    {
+      "table_name": "user_profiles",
+      "index_name": "idx_user_profiles_status",
+      "index_size": "16 kB",
+      "is_unique": false,
+      "column_names": "status"
+    },
+    {
+      "table_name": "user_profiles",
+      "index_name": "user_profiles_auth_id_key",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "auth_id"
+    },
+    {
+      "table_name": "user_profiles",
+      "index_name": "user_profiles_email_key",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "email"
+    },
+    {
+      "table_name": "user_profiles",
+      "index_name": "user_profiles_pkey",
+      "index_size": "16 kB",
+      "is_unique": true,
+      "column_names": "id"
+    },
+    {
+      "table_name": "vendors",
+      "index_name": "vendors_pkey",
+      "index_size": "8192 bytes",
+      "is_unique": true,
+      "column_names": "vendorid"
+    }
+  ]
+} 
